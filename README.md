@@ -1,12 +1,5 @@
 # OTFS Sidelobe-Phase Closed-Form Doppler Estimator
 
-Simulation code for the paper:
-
-> **A Sidelobe-Phase-Exploiting Closed-Form Doppler Estimator for LEO OTFS Systems**
-> *Physical Communication* (Elsevier), manuscript ID `PHYCOM-D-26-02857`
-
-This repository reproduces **all figures and numerical results** reported in the paper.
-
 ---
 
 ## Overview
