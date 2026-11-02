@@ -229,6 +229,5 @@ def run_experiment2(cfg: "SimConfig" = None, nu_f: float = None,
 
     return output
 
-
 if __name__ == "__main__":
     results = run_experiment2()
