@@ -150,14 +150,35 @@ singularity at `ν_f = 0` that would otherwise break the sidelobe-only variant.
 If you use this code, please cite the paper:
 
 ```bibtex
-@article{otfs_sidelobe_doppler_2026,
+@article{zheng2026otfs,
   title   = {A Sidelobe-Phase-Exploiting Closed-Form Doppler Estimator for {LEO} {OTFS} Systems},
-  author  = {<authors>},
+  author  = {Zheng, Liping and Ning, Feng and Fu, Chunlong and Zheng, Hengjie and
+             Xiao, Kaiwen and Deng, Yang and He, Hongxia and Qiu, Moran},
   journal = {Physical Communication},
   year    = {2026},
   note    = {Manuscript ID PHYCOM-D-26-02857}
 }
 ```
+
+While the paper is under review, please also reference this repository:
+
+```
+https://github.com/Liping-yy/otfs-sidelobe-doppler
+```
+
+---
+
+## Authors and affiliations
+
+**School of Computer Science, Sichuan University Jinjiang College** (Meishan, Sichuan 620860, China)
+Liping Zheng (corresponding author, zhengliping@scujj.edu.cn), Feng Ning, Chunlong Fu,
+Hengjie Zheng, Kaiwen Xiao, Yang Deng, Hongxia He
+
+**School of Traffic and Transportation, Lanzhou Jiaotong University** (Lanzhou, Gansu 730070, China)
+Moran Qiu
+
+Correspondence regarding the code should be directed to Liping Zheng
+(zhengliping@scujj.edu.cn) or opened as a GitHub issue.
 
 ---
 
