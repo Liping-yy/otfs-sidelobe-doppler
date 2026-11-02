@@ -490,7 +490,6 @@ def run_all(cfg=None, mc_times=None, snr_db=10.0):
     print(f"\nResults saved to {results_path}")
     return out
 
-
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Experiment: multipath / Rician channel and residual synchronization")
