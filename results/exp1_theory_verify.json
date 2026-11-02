@@ -1,0 +1,934 @@
+{
+  "experiment": "exp1_theory_verify",
+  "config": {
+    "M": 64,
+    "N": 16,
+    "lp": 5,
+    "kp": 8,
+    "A": 3.0,
+    "delta_k_list": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "nu_f_list": [
+      -0.45,
+      -0.3,
+      -0.1,
+      0.0,
+      0.02,
+      0.1,
+      0.3,
+      0.45
+    ],
+    "mc_times": 1,
+    "noise": "none"
+  },
+  "results": [
+    {
+      "nu_f": -0.45,
+      "psi_theory": -2.650718801466388,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": 9.163720263131331,
+            "D_minus": -3.516455629929377,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": -3.2959719273964327,
+            "D_minus": 2.1345458503007806,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": 2.0575463484370293,
+            "D_minus": -1.5758289617826262,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": -1.538571345023887,
+            "D_minus": 1.2881572554625493,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": 1.2675651507537529,
+            "D_minus": -1.1258903556804523,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": -1.1141353294273644,
+            "D_minus": 1.0352645412561523,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": 1.0291164126646337,
+            "D_minus": -0.993475831950552,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 8.881784197001252e-16,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": -2.650718801466388,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": -2.650718801466388,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": -2.6507188014663874,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 4.440892098500626e-16
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": -2.650718801466388,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": -2.650718801466387,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 8.881784197001252e-16
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": -2.650718801466387,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 8.881784197001252e-16
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": -2.650718801466388,
+            "psi_theory": -2.650718801466388,
+            "abs_err": 0.0
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": 0.49087385212340534,
+        "psi0_corrected": -2.650718801466388,
+        "abs_err": 0.0
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": -0.45,
+        "abs_err": 0.0
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": -0.45,
+        "abs_err": 0.0,
+        "note": ""
+      }
+    },
+    {
+      "nu_f": -0.3,
+      "psi_theory": -1.7671458676442586,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": 5.904701608945794,
+            "D_minus": -3.204134585156396,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": -2.4692993650867496,
+            "D_minus": 1.8538035379972775,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": 1.5999311727037713,
+            "D_minus": -1.3404175787853994,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": -1.2179360559351096,
+            "D_minus": 1.0822849262034464,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": 1.0146695567798185,
+            "D_minus": -0.9377358866460801,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": -0.8991592523315013,
+            "D_minus": 0.8562783836960844,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": 0.836107640822105,
+            "D_minus": -0.8167191950567214,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 8.881784197001252e-16,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": -1.7671458676442586,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": -1.7671458676442586,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": -1.7671458676442586,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": -1.767145867644258,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 6.661338147750939e-16
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": -1.7671458676442595,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 8.881784197001252e-16
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": -1.7671458676442588,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 2.220446049250313e-16
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": -1.767145867644259,
+            "psi_theory": -1.7671458676442586,
+            "abs_err": 4.440892098500626e-16
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": 1.3744467859455347,
+        "psi0_corrected": -1.7671458676442584,
+        "abs_err": 2.220446049250313e-16
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": -0.3,
+        "abs_err": 0.0
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": -0.30000000000000004,
+        "abs_err": 5.551115123125783e-17,
+        "note": ""
+      }
+    },
+    {
+      "nu_f": -0.1,
+      "psi_theory": -0.5890486225480862,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": 1.757813046387216,
+            "D_minus": -1.4419215883007555,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": -0.8478518686077773,
+            "D_minus": 0.7710989249353979,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": 0.5731682969714614,
+            "D_minus": -0.5404398411116182,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": -0.4458557623096192,
+            "D_minus": 0.42868204554759076,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": 0.3766655907466552,
+            "D_minus": -0.36690889476507926,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": -0.33728558858958907,
+            "D_minus": 0.33184282472336457,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": 0.31636751475907965,
+            "D_minus": -0.3139055815758189,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 3.1086244689504383e-15,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": -0.5890486225480859,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 3.3306690738754696e-16
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": -0.5890486225480861,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 1.1102230246251565e-16
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": -0.5890486225480843,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 1.887379141862766e-15
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": -0.5890486225480873,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 1.1102230246251565e-15
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": -0.5890486225480854,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 7.771561172376096e-16
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": -0.5890486225480871,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 8.881784197001252e-16
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": -0.5890486225480893,
+            "psi_theory": -0.5890486225480862,
+            "abs_err": 3.1086244689504383e-15
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": 2.552544031041707,
+        "psi0_corrected": -0.589048622548086,
+        "abs_err": 2.220446049250313e-16
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": -0.09999999999999996,
+        "abs_err": 4.163336342344337e-17
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": -0.09999999999999994,
+        "abs_err": 6.938893903907228e-17,
+        "note": ""
+      }
+    },
+    {
+      "nu_f": 0.0,
+      "psi_theory": 0.0,
+      "(a)_dirichlet_sign": {
+        "all_opposite": false,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": 6.277332399123883e-16,
+            "D_minus": 6.277332399123883e-16,
+            "sign_opposite": false
+          },
+          {
+            "delta_k": 2,
+            "D_plus": -6.400312611281321e-16,
+            "D_minus": -6.400312611281321e-16,
+            "sign_opposite": false
+          },
+          {
+            "delta_k": 3,
+            "D_plus": 6.612918005836414e-16,
+            "D_minus": 6.612918005836414e-16,
+            "sign_opposite": false
+          },
+          {
+            "delta_k": 4,
+            "D_plus": -6.927648449883946e-16,
+            "D_minus": -6.927648449883946e-16,
+            "sign_opposite": false
+          },
+          {
+            "delta_k": 5,
+            "D_plus": 7.364350909686303e-16,
+            "D_minus": 7.364350909686303e-16,
+            "sign_opposite": false
+          },
+          {
+            "delta_k": 6,
+            "D_plus": -7.953288861060846e-16,
+            "D_minus": -7.953288861060846e-16,
+            "sign_opposite": false
+          },
+          {
+            "delta_k": 7,
+            "D_plus": 8.740473338371317e-16,
+            "D_minus": 8.740473338371317e-16,
+            "sign_opposite": false
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 0.0,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": -0.0,
+            "psi_theory": 0.0,
+            "abs_err": 0.0
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": -3.141592653589793,
+        "psi0_corrected": 0.0,
+        "abs_err": 0.0
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": 0.0,
+        "abs_err": 0.0
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": 0.0,
+        "abs_err": 0.0,
+        "note": "νf=0时旁瓣全零→奇异点（预期fail）"
+      }
+    },
+    {
+      "nu_f": 0.02,
+      "psi_theory": 0.11780972450961726,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": -0.3156248687232016,
+            "D_minus": 0.3283382576205707,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": 0.16253981786623142,
+            "D_minus": -0.16565128057996378,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": -0.11236045723790068,
+            "D_minus": 0.11368899219077554,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": 0.0884525349309133,
+            "D_minus": -0.08914998196903076,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": -0.07532046128763302,
+            "D_minus": 0.07571677466710092,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": 0.06785411968834935,
+            "D_minus": -0.068075225244864,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": -0.06397118229693094,
+            "D_minus": 0.06407120017829535,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 9.56179579958416e-15,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": 0.1178097245096159,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 1.3600232051658168e-15
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": 0.11780972450961587,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 1.3877787807814457e-15
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": 0.11780972450962096,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 3.70536934468646e-15
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": 0.11780972450962125,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 3.9968028886505635e-15
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": 0.11780972450961961,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 2.3592239273284576e-15
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": 0.11780972450961003,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 7.230327447871332e-15
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": 0.1178097245096077,
+            "psi_theory": 0.11780972450961726,
+            "abs_err": 9.56179579958416e-15
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": -3.023782929080176,
+        "psi0_corrected": 0.11780972450961702,
+        "abs_err": 2.3592239273284576e-16
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": 0.019999999999999962,
+        "abs_err": 3.8163916471489756e-17
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": 0.01999999999999989,
+        "abs_err": 1.1102230246251565e-16,
+        "note": ""
+      }
+    },
+    {
+      "nu_f": 0.1,
+      "psi_theory": 0.5890486225480862,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": -1.4419215883007555,
+            "D_minus": 1.757813046387216,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": 0.7710989249353979,
+            "D_minus": -0.8478518686077773,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": -0.5404398411116182,
+            "D_minus": 0.5731682969714614,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": 0.42868204554759076,
+            "D_minus": -0.4458557623096192,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": -0.36690889476507926,
+            "D_minus": 0.3766655907466552,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": 0.33184282472336457,
+            "D_minus": -0.33728558858958907,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": -0.3139055815758189,
+            "D_minus": 0.31636751475907965,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 4.218847493575595e-15,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": 0.5890486225480859,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 3.3306690738754696e-16
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": 0.5890486225480863,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 1.1102230246251565e-16
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": 0.5890486225480847,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 1.5543122344752192e-15
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": 0.5890486225480872,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 9.992007221626409e-16
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": 0.5890486225480842,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 1.9984014443252818e-15
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": 0.5890486225480885,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 2.3314683517128287e-15
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": 0.5890486225480904,
+            "psi_theory": 0.5890486225480862,
+            "abs_err": 4.218847493575595e-15
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": -2.552544031041707,
+        "psi0_corrected": 0.589048622548086,
+        "abs_err": 2.220446049250313e-16
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": 0.09999999999999996,
+        "abs_err": 4.163336342344337e-17
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": 0.09999999999999996,
+        "abs_err": 4.163336342344337e-17,
+        "note": ""
+      }
+    },
+    {
+      "nu_f": 0.3,
+      "psi_theory": 1.7671458676442586,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": -3.204134585156396,
+            "D_minus": 5.904701608945794,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": 1.8538035379972775,
+            "D_minus": -2.4692993650867496,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": -1.3404175787853994,
+            "D_minus": 1.5999311727037713,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": 1.0822849262034464,
+            "D_minus": -1.2179360559351096,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": -0.9377358866460801,
+            "D_minus": 1.0146695567798185,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": 0.8562783836960844,
+            "D_minus": -0.8991592523315013,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": -0.8167191950567214,
+            "D_minus": 0.836107640822105,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 6.661338147750939e-16,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": 1.7671458676442586,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": 1.7671458676442586,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": 1.7671458676442586,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": 1.7671458676442582,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 4.440892098500626e-16
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": 1.7671458676442593,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 6.661338147750939e-16
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": 1.7671458676442588,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 2.220446049250313e-16
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": 1.7671458676442588,
+            "psi_theory": 1.7671458676442586,
+            "abs_err": 2.220446049250313e-16
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": -1.3744467859455347,
+        "psi0_corrected": 1.767145867644258,
+        "abs_err": 6.661338147750939e-16
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": 0.29999999999999993,
+        "abs_err": 5.551115123125783e-17
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": 0.30000000000000004,
+        "abs_err": 5.551115123125783e-17,
+        "note": ""
+      }
+    },
+    {
+      "nu_f": 0.45,
+      "psi_theory": 2.650718801466388,
+      "(a)_dirichlet_sign": {
+        "all_opposite": true,
+        "details": [
+          {
+            "delta_k": 1,
+            "D_plus": -3.516455629929377,
+            "D_minus": 9.163720263131331,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 2,
+            "D_plus": 2.1345458503007806,
+            "D_minus": -3.2959719273964327,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 3,
+            "D_plus": -1.5758289617826262,
+            "D_minus": 2.0575463484370293,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 4,
+            "D_plus": 1.2881572554625493,
+            "D_minus": -1.538571345023887,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 5,
+            "D_plus": -1.1258903556804523,
+            "D_minus": 1.2675651507537529,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 6,
+            "D_plus": 1.0352645412561523,
+            "D_minus": -1.1141353294273644,
+            "sign_opposite": true
+          },
+          {
+            "delta_k": 7,
+            "D_plus": -0.993475831950552,
+            "D_minus": 1.0291164126646337,
+            "sign_opposite": true
+          }
+        ]
+      },
+      "(b)_sidetone_invariance": {
+        "max_err": 8.881784197001252e-16,
+        "details": [
+          {
+            "delta_k": 1,
+            "psi_meas": 2.650718801466388,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 2,
+            "psi_meas": 2.650718801466388,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 3,
+            "psi_meas": 2.650718801466388,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 4,
+            "psi_meas": 2.650718801466388,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 0.0
+          },
+          {
+            "delta_k": 5,
+            "psi_meas": 2.6507188014663874,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 4.440892098500626e-16
+          },
+          {
+            "delta_k": 6,
+            "psi_meas": 2.6507188014663874,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 4.440892098500626e-16
+          },
+          {
+            "delta_k": 7,
+            "psi_meas": 2.6507188014663887,
+            "psi_theory": 2.650718801466388,
+            "abs_err": 8.881784197001252e-16
+          }
+        ]
+      },
+      "(c)_peak_self_square": {
+        "psi0_raw": -0.49087385212340534,
+        "psi0_corrected": 2.650718801466388,
+        "abs_err": 0.0
+      },
+      "(d)_unified_estimate": {
+        "nu_f_hat": 0.45,
+        "abs_err": 0.0
+      },
+      "sidetone_only_ablation": {
+        "nu_f_hat": 0.45,
+        "abs_err": 0.0,
+        "note": ""
+      }
+    }
+  ],
+  "tolerance": 1e-12,
+  "all_pass": true,
+  "_meta": {
+    "saved_at": "2026-09-04T18:45:34.759260"
+  }
+}

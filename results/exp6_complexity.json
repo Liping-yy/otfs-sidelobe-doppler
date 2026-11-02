@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "n_trials": 500,
+    "snr_db": 10.0,
+    "nu_f": 0.3,
+    "frame_type": "engineering",
+    "M": 64,
+    "N": 16,
+    "lp": 5,
+    "kp": 8,
+    "A": 3.0,
+    "Kmax": 10,
+    "delta_k_list": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "delta_k_sidetone": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "timing": {
+    "proposed": {
+      "mean_us": 42.64600000000029,
+      "std_us": 14.474338810459937,
+      "median_us": 38.09999999998537,
+      "min_us": 35.89999999997762,
+      "max_us": 222.49999999995885,
+      "p95_us": 66.61000000002802,
+      "n_trials": 500
+    },
+    "sidetone_only": {
+      "mean_us": 25.0518000000004,
+      "std_us": 9.840405314823347,
+      "median_us": 20.40000000000375,
+      "min_us": 19.199999999996997,
+      "max_us": 115.0999999999791,
+      "p95_us": 38.30499999999125,
+      "n_trials": 500
+    },
+    "matrix_pencil": {
+      "mean_us": 180.3095999999984,
+      "std_us": 36.183595562625435,
+      "median_us": 163.9000000000501,
+      "min_us": 150.60000000000073,
+      "max_us": 477.99999999997846,
+      "p95_us": 241.29999999999984,
+      "n_trials": 500
+    },
+    "he2023": {
+      "mean_us": 9642.855799999985,
+      "std_us": 3113.882432627525,
+      "median_us": 8472.450000000186,
+      "min_us": 6143.499999999857,
+      "max_us": 21025.49999999992,
+      "p95_us": 15950.659999999893,
+      "n_trials": 500
+    }
+  },
+  "theoretical": {
+    "proposed": {
+      "big_o": "O(K)",
+      "flops_per_call": "7*(2 mul + 1 angle) + 1 angle + 1 div",
+      "description": "K个旁瓣对复数乘法+幅角+加权矢量求和+1次闭式除法",
+      "note": "K=7 (delta_k_list), 无搜索无迭代"
+    },
+    "sidetone_only": {
+      "big_o": "O(K)",
+      "flops_per_call": "4*(2 mul + 1 angle) + 1 angle + 1 div",
+      "description": "K个旁瓣对复数乘法+幅角+加权矢量求和+1次闭式除法",
+      "note": "K=4 (delta_k_sidetone), 无搜索无迭代, 无峰值自乘"
+    },
+    "matrix_pencil": {
+      "big_o": "O(N^3)",
+      "flops_per_call": "N^3 (Hankel SVD) + N^2 (广义特征值)",
+      "description": "IDFT + Hankel矩阵构造 + SVD/广义特征值分解",
+      "note": "N=16, 需整行导频, scipy.linalg.eig"
+    },
+    "he2023": {
+      "big_o": "O(G * N * log N)",
+      "flops_per_call": "G*(ISFFT + Doppler + SFFT + inner_product) + BFGS_iter*(residual_eval)",
+      "description": "G=101网格点模板匹配(每点完整OTFS链路) + BFGS迭代(约10-30步)",
+      "note": "G=101, 每网格点需ISFFT+SFFT, BFGS每步需1次模板生成+残差计算"
+    }
+  },
+  "_meta": {
+    "saved_at": "2026-09-04T20:18:49.476352"
+  }
+}

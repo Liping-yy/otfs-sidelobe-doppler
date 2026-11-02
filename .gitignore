@@ -1,0 +1,46 @@
+# .gitignore
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / editors
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LaTeX build artifacts (manuscript lives in the parent repo)
+*.aux
+*.log
+*.out
+*.blg
+*.spl
+*.synctex.gz
+
+# Temporary
+*.tmp
+~$*
