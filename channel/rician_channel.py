@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Rician / multipath channel model for OTFS-LEO (revision extension)
-=================================================================
+Rician / multipath channel model for OTFS-LEO
+=============================================
 
-Adds the multipath capability requested by Reviewers R1-7 and R3-2:
-  - Finite-K Rician channel: dominant LOS path + P_s scattered paths
+Finite-K Rician channel: dominant LOS path + P_s scattered paths
   - Each path p has:
       * integer delay tap l_p   (delay row in DD domain)
       * fractional Doppler nu_p in (-0.5, 0.5)
@@ -25,7 +24,7 @@ Residual timing offset (fractional delay) lambda:
   - Optional fractional delay in units of the delay resolution.
   - TF-domain effect: exp(-j*2*pi*lambda*m/M), which is NOT separable
     per-delay-row and therefore creates genuine cross-row leakage
-    (the exact phenomenon discussed in Section V of the revision).
+    (the phenomenon analysed in Section V of the paper).
 """
 
 import numpy as np
@@ -91,7 +90,7 @@ def rician_paths(
         # Scattered delay: fractional delay in a few delay-tap units.
         # A fractional delay breaks the delay-row orthogonality, so the
         # scattered path leaks into the pilot row (genuine cross-row
-        # interference, cf. Section V of the revision).
+        # interference, cf. Section V of the paper).
         l_s = float(rng.uniform(0.2, 3.5))
         scat_ls.append(l_s)
 

@@ -1,12 +1,11 @@
 {
-  "experiment": "exp2_mse_snr",
+  "experiment": "exp2_mse_snr_v2",
   "config": {
     "M": 64,
     "N": 16,
     "lp": 5,
     "kp": 8,
     "A": 3.0,
-    "Kmax": 10,
     "nu_f": 0.3,
     "snr_list": [
       -5.0,
@@ -34,7 +33,7 @@
     ],
     "frame_types": [
       "pure",
-      "engineering"
+      "engineering_zp"
     ],
     "est_names": [
       "proposed",
@@ -43,7 +42,7 @@
       "he2023"
     ],
     "seed": 2026,
-    "local_snr": false
+    "frame_note": "engineering_zp: pilot row zero-padded, no Kmax"
   },
   "results": {
     "pure": {
@@ -75,7 +74,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 23.761268138885498
+        "elapsed_s": 25.08393096923828
       },
       "snr_0dB": {
         "snr_db": 0.0,
@@ -105,7 +104,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 26.410378456115723
+        "elapsed_s": 27.117396593093872
       },
       "snr_5dB": {
         "snr_db": 5.0,
@@ -135,7 +134,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 28.46282649040222
+        "elapsed_s": 28.92551279067993
       },
       "snr_10dB": {
         "snr_db": 10.0,
@@ -165,7 +164,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 29.248274564743042
+        "elapsed_s": 30.455527305603027
       },
       "snr_15dB": {
         "snr_db": 15.0,
@@ -195,7 +194,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 28.651203870773315
+        "elapsed_s": 29.834426164627075
       },
       "snr_20dB": {
         "snr_db": 20.0,
@@ -225,10 +224,10 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 27.63254427909851
+        "elapsed_s": 29.667621850967407
       }
     },
-    "engineering": {
+    "engineering_zp": {
       "snr_-5dB": {
         "snr_db": -5.0,
         "metrics": {
@@ -257,7 +256,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 18.55475687980652
+        "elapsed_s": 19.154436349868774
       },
       "snr_0dB": {
         "snr_db": 0.0,
@@ -287,7 +286,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 18.85797429084778
+        "elapsed_s": 19.635547161102295
       },
       "snr_5dB": {
         "snr_db": 5.0,
@@ -317,7 +316,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 19.568511247634888
+        "elapsed_s": 20.626869440078735
       },
       "snr_10dB": {
         "snr_db": 10.0,
@@ -347,7 +346,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 21.578224420547485
+        "elapsed_s": 22.587443590164185
       },
       "snr_15dB": {
         "snr_db": 15.0,
@@ -377,7 +376,7 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 24.03823757171631
+        "elapsed_s": 25.564417600631714
       },
       "snr_20dB": {
         "snr_db": 20.0,
@@ -407,11 +406,11 @@
             "n_trials": 2000
           }
         },
-        "elapsed_s": 26.249216318130493
+        "elapsed_s": 27.988574743270874
       }
     }
   },
   "_meta": {
-    "saved_at": "2026-09-04T20:02:40.263548"
+    "saved_at": "2026-09-11T09:38:20.133156"
   }
 }

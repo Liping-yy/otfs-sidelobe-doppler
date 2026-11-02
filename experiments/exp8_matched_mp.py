@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Experiment 8 (revision): Matched-sample MP comparison (fairness)
-================================================================
+Experiment: Matched-sample MP comparison (comparison fairness)
+==============================================================
 
-Addresses Reviewer 1 Comment 6 and Reviewer 3 Comment 3:
-  - Clarify what observations each method uses
-  - Add a matrix-pencil comparison using the SAME observations as proposed
+Purpose:
+  - Make explicit which observations each estimator uses
+  - Compare matrix-pencil on the SAME observation set as the proposed method
 
 Key observation-set facts (single-path LOS, zero-padded pilot row, N=16):
   - Proposed:      sidelobe pairs (kp ± dk, dk=1..7) + peak kp

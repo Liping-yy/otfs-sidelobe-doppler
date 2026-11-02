@@ -1,27 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Experiment 6: complexitycomparison
-==================
+Experiment 6（v2）：complexitycomparison —— zero-paddedframeversion
+=======================================
 
-Corresponding to experiment outline Experiment 6。
-
-Design:
-  4estimator × 500 timesrepeattiming + theoreticalflopparametersnapshot
-
-  estimator:
-    1. Proposed:   Sidelobe + peak self-multiplication closed-form, O(K)
-    2. onlysidelobe:     Ablation control, O(K)
-    3. MP:         SVD super-resolution, O(N^3)
-    4. He2023:     modeltemplatecorrelationclose+quasi-Newton, O(G*N*logN)
-
-  timingequationformula:
-    - eachestimatorusesame500framedata（engineering frame, SNR=10dB, nu_f=0.3）
-    - unitframeunitestimatorschedulerusetiming, take500 timesaverage
-    - excludefirst timesscheduleruse（JIT/cachewarmup）
-
-  output:
-    - table: estimator name | averageelapsed time(us) | standarddifference | theoreticalcomplexity | backupNote
-    - JSON: completetimingdata
+Based on exp6_complexity.py modified，adaptednewpaperFrame structure：
+  - engineering framechangeaspilot row fully zero-padded（No Kmax concept）
+  - timinglogicunchanged，onlyframe generationequationformulachangetransform
 
 """
 
@@ -30,14 +14,13 @@ import sys
 import time
 import numpy as np
 
-# project root
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from config.params import DEFAULT
 from modem.otfs_modem import isfft_fft, sfft_fft, apply_fractional_doppler_tf, add_awgn
-from frame.frame_gen import generate_engineering_frame
+from frame.frame_gen import generate_engineering_frame_zp
 from estimator import get_estimator
 from utils.metrics import save_results
 
@@ -84,37 +67,34 @@ def run_experiment6(
     nu_f=0.3,
 ):
     """
-    runExperiment 6: complexitycomparison。
+    Experiment 6（v2）main function：complexitycomparison（zero-paddedframeversion）。
 
-    Args:
-        n_trials: timingrepeat times(default default500)
-        snr_db: testSNR（default10dB）
-        nu_f: testfractional Doppler（default0.3）
+    Difference from original：frame generationusezero-paddedversion，irrationalKmaxparameter。
+    timinglogiccompleteallsame。
     """
     cfg = DEFAULT
     M, N = cfg.M, cfg.N
     lp, kp = cfg.pilot_delay, cfg.pilot_doppler
     A = cfg.pilot_amp
-    Kmax = cfg.kmax_default
     delta_k_list = cfg.delta_k_list
     delta_k_sidetone = cfg.delta_k_sidetone
 
     est_names = ["proposed", "sidetone_only", "matrix_pencil", "he2023"]
 
     print("=" * 80)
-    print(f"  Experiment 6: complexitycomparison")
+    print(f"  Experiment 6(v2): complexitycomparison [zero-paddedframe]")
     print(f"  n_trials={n_trials}, SNR={snr_db}dB, nu_f={nu_f}")
-    print(f"  frame: engineering (Kmax={Kmax}, A={A})")
+    print(f"  frame: engineering_zp (A={A}, pilot row zero-padded)")
     print(f"  estimator: {est_names}")
     print("=" * 80)
 
-    # preventgeneratealltestframe（ensureeachestimatorusesamedata）
+    # preventgeneratealltestframe
     print("  preventgeneratetestframe...")
     rng_master = np.random.default_rng(cfg.seed)
     y_rows = []
-    for _ in range(n_trials + 10):  # +10 for warmup
+    for _ in range(n_trials + 10):
         trial_rng = np.random.default_rng(rng_master.integers(0, 2**31))
-        X_dd = generate_engineering_frame(M, N, lp, kp, A, Kmax, trial_rng)
+        X_dd = generate_engineering_frame_zp(M, N, lp, kp, A, trial_rng)
         X_tf = isfft_fft(X_dd)
         R_tf = apply_fractional_doppler_tf(X_tf, nu_f)
         R_tf_noisy = add_awgn(R_tf, snr_db, trial_rng)
@@ -128,10 +108,11 @@ def run_experiment6(
             "n_trials": n_trials,
             "snr_db": snr_db,
             "nu_f": nu_f,
-            "frame_type": "engineering",
-            "M": M, "N": N, "lp": lp, "kp": kp, "A": A, "Kmax": Kmax,
+            "frame_type": "engineering_zp",
+            "M": M, "N": N, "lp": lp, "kp": kp, "A": A,
             "delta_k_list": list(delta_k_list),
             "delta_k_sidetone": list(delta_k_sidetone),
+            "frame_note": "pilot row zero-padded, no Kmax",
         },
         "timing": {},
         "theoretical": THEORETICAL_COMPLEXITY,
@@ -140,7 +121,7 @@ def run_experiment6(
     for name in est_names:
         fn = get_estimator(name)
 
-        # warmup（front10 timesnocountcount）
+        # warmup
         for i in range(10):
             y_row = y_rows[i]
             if name == "sidetone_only":
@@ -169,7 +150,7 @@ def run_experiment6(
                 fn(y_row, kp, N, delta_k_list=delta_k_list)
 
             t_end = time.perf_counter()
-            times.append((t_end - t_start) * 1e6)  # rotationasmicroseconds
+            times.append((t_end - t_start) * 1e6)
 
         times = np.array(times)
 
@@ -183,7 +164,6 @@ def run_experiment6(
             "n_trials": n_trials,
         }
 
-        # print
         mean_val = results["timing"][name]["mean_us"]
         std_val = results["timing"][name]["std_us"]
         median_val = results["timing"][name]["median_us"]
@@ -205,7 +185,6 @@ def run_experiment6(
         ratio = mean_val / prop_mean if prop_mean > 0 else float("inf")
         print(f"  {name:<20s} | {mean_val:<12.2f} | {median_val:<12.2f} | {big_o:<12s} | {ratio:<12.1f}x")
 
-    # saveresult
     output_path = os.path.join(PROJECT_ROOT, "results", "exp6_complexity.json")
     save_results(results, output_path)
     print("=" * 80)

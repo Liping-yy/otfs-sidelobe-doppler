@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Plotting script for Experiment 7 (revision): multipath/Rician + residual sync
+Plotting script for the multipath / Rician experiment: Rician K-factor sweep,
 ===============================================================================
 
-Generates four figures from results/exp7_multipath_v2.json:
+Generates four figures from results/exp7_multipath.json:
 
   fig7a_k_sweep.pdf     MSE vs Rician K-factor (all estimators)
   fig7b_weak_echo.pdf   MSE vs weak-echo delay offset (proposed vs MP)
@@ -28,7 +28,7 @@ RESULTS_DIR = os.path.join(PROJECT_ROOT, "results")
 FIGURES_DIR = os.path.join(PROJECT_ROOT, "figures")
 os.makedirs(FIGURES_DIR, exist_ok=True)
 
-# ---- same global style as plot_all_figures_v2.py ----
+# ---- same global style as plot_all_figures.py ----
 plt.rcParams.update({
     'font.size': 11,
     'font.family': 'serif',
@@ -84,7 +84,7 @@ def _load_json(name):
 
 def plot_exp7a_k_sweep():
     """Figure 7a: MSE vs Rician K-factor (log-y)."""
-    d = _load_json("exp7_multipath_v2")
+    d = _load_json("exp7_multipath")
     k_sweep = d["k_sweep"]
     cfg = k_sweep["config"]
     k_list = [k_sweep["results"][f"K_{k:.0f}dB"]["k_db"]
@@ -113,7 +113,7 @@ def plot_exp7a_k_sweep():
 
 def plot_exp7b_weak_echo():
     """Figure 7b: MSE vs weak-echo delay offset (proposed vs MP)."""
-    d = _load_json("exp7_multipath_v2")
+    d = _load_json("exp7_multipath")
     we = d["weak_echo"]
     cfg = we["config"]
     offsets = cfg["delay_offsets"]
@@ -141,7 +141,7 @@ def plot_exp7b_weak_echo():
 
 def plot_exp7c_timing_sweep():
     """Figure 7c: MSE vs residual timing offset (fractional delay lambda)."""
-    d = _load_json("exp7_multipath_v2")
+    d = _load_json("exp7_multipath")
     ts = d["timing_sweep"]
     cfg = ts["config"]
     lambdas = cfg["lambda_list"]
@@ -168,7 +168,7 @@ def plot_exp7c_timing_sweep():
 
 def plot_exp7d_freq_sweep():
     """Figure 7d: MSE vs residual frequency offset (delta_nu)."""
-    d = _load_json("exp7_multipath_v2")
+    d = _load_json("exp7_multipath")
     fs = d["freq_sweep"]
     cfg = fs["config"]
     dnus = cfg["delta_nu_list"]
@@ -196,7 +196,7 @@ def plot_exp7d_freq_sweep():
 
 def plot_all_exp7():
     print("=" * 60)
-    print("  Experiment 7 figures [multipath / Rician revision]")
+    print("  Multipath / Rician figures")
     print(f"  output directory: {FIGURES_DIR}")
     print("=" * 60)
 

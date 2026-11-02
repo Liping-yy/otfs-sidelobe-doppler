@@ -69,19 +69,19 @@ plotting scripts in the repository root render `figures/*.pdf` and `figures/*.pn
 |---|---|---|
 | `exp1_theory_verify.py` | Exp. 1 — verification of the four key identities | Table 2 |
 | `exp3_full_nu_sweep.py` | Exp. 1 — full `ν_f` sweep and zoom near 0 | **Fig. 1** |
-| `exp2_mse_snr.py` / `exp2_mse_snr_v2.py` | MSE vs SNR, both frames | Fig. 1 / Table |
+| `exp2_mse_snr.py` / `exp2_mse_snr.py` | MSE vs SNR, both frames | Fig. 1 / Table |
 | `exp8_matched_mp.py` | Exp. 2 — matched-sample MP comparison | **Fig. 2** |
-| `exp5_ber_snr.py` / `exp5_ber_snr_v2.py` | Exp. 4 — BER vs SNR | **Fig. 3** |
-| `exp7_multipath_v2.py` | Exp. 6 — Rician `K_r` sweep, weak echo, timing/freq offsets | **Figs. 4–6** |
-| `exp4_a_sensitivity_v2.py`, `exp4_kmax_a_heatmap.py` | Pilot-power sensitivity | Tables |
-| `exp6_complexity.py` / `exp6_complexity_v2.py` | Exp. 5 — FLOP counts and runtime | Tables 5–6 |
+| `exp5_ber_snr.py` / `exp5_ber_snr.py` | Exp. 4 — BER vs SNR | **Fig. 3** |
+| `exp7_multipath.py` | Exp. 6 — Rician `K_r` sweep, weak echo, timing/freq offsets | **Figs. 4–6** |
+| `exp4_a_sensitivity.py`, `exp4_kmax_a_heatmap.py` | Pilot-power sensitivity | Tables |
+| `exp6_complexity.py` / `exp6_complexity.py` | Exp. 5 — FLOP counts and runtime | Tables 5–6 |
 
 Plot all figures:
 
 ```bash
 python plot_exp7_figures.py
 python plot_exp8_figures.py
-python plot_all_figures_v2.py
+python plot_all_figures.py
 ```
 
 Example — single experiment:

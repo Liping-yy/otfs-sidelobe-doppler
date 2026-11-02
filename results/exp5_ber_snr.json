@@ -11,20 +11,20 @@
       25.0
     ],
     "nu_f": 0.3,
-    "frame_type": "engineering",
+    "frame_type": "engineering_zp",
     "M": 64,
     "N": 16,
     "lp": 5,
     "kp": 8,
     "A": 3.0,
-    "Kmax": 10,
     "curves": [
       "proposed",
       "matrix_pencil",
       "he2023",
       "ideal",
       "no_comp"
-    ]
+    ],
+    "frame_note": "pilot row zero-padded, no Kmax"
   },
   "ber": {
     "proposed": {
@@ -214,6 +214,6 @@
     }
   },
   "_meta": {
-    "saved_at": "2026-09-04T20:12:00.027468"
+    "saved_at": "2026-09-11T09:44:45.647231"
   }
 }

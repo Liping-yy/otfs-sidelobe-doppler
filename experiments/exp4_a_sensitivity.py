@@ -98,7 +98,7 @@ def _run_single_a(
 # main function
 # ============================================================
 
-def run_experiment4_v2(
+def run_experiment4(
     mc_times=None,
     snr_db=10.0,
     a_list=None,
@@ -210,12 +210,12 @@ def run_experiment4_v2(
 
     # ==================== saveresult ====================
     output = {
-        "experiment": "exp4_a_sensitivity_v2",
+        "experiment": "exp4_a_sensitivity",
         "config": meta,
         "results_by_a": results_by_a,
     }
 
-    output_path = os.path.join(PROJECT_ROOT, "results", "exp4_a_sensitivity_v2.json")
+    output_path = os.path.join(PROJECT_ROOT, "results", "exp4_a_sensitivity.json")
     save_results(output, output_path)
     print(f"\nresultalreadysaveto: {output_path}")
 
@@ -223,4 +223,4 @@ def run_experiment4_v2(
 
 
 if __name__ == "__main__":
-    run_experiment4_v2()
+    run_experiment4()

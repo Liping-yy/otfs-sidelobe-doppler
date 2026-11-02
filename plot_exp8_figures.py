@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Plotting script for Experiment 8 (revision): matched-sample MP comparison
+Plotting script for the matched-sample MP comparison experiment
 ==========================================================================
 
 Generates:

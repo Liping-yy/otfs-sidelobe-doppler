@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Plotting script: Generate all experiment figures
-================================
+Plotting script v2: Generate all experiment figures（zero-paddedframeversion）
+=============================================
 
-Read data from JSON files under results/, generate paper figures:
+from results/ lower JSON filereaddata，generatepaperusefigure:
 
-  figure2: Experiment 2 MSE-SNRCurves (2subplot: pure + engineering)
-  figure3: Experiment 3 Full-rangenu_f MSESweep (Proposed vs onlysidelobe, includingzoom-in)
-  figure4: Experiment 4 Kmax x A heatmap (3subplot: Proposed/MP/He2023)
+  figure2: Experiment 2 MSE-SNRCurves (2subplot: pure + engineering_zp)
+  figure3: Experiment 3 Full-rangenu_f MSESweep (Unchanged, still using pure frame)
+  figure4: Experiment 4 pilot powerAsensitivity (MSE vs A, 3estimator)
   figure5: Experiment 5 BER-SNRCurves (5Curves)
+  figure6: Experiment 6 complexitycomparison (bar chart)
 
 outputformat: PDF (vector) + PNG (preview)
 save location: project/figures/
@@ -25,7 +26,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.ticker import LogLocator, LogFormatterMathtext
 
-# project root (plot_all_figures.py located at project/ lower)
+# project root
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(PROJECT_ROOT, "results")
 FIGURES_DIR = os.path.join(PROJECT_ROOT, "figures")
@@ -49,12 +50,12 @@ plt.rcParams.update({
 
 # colors and markers
 COLORS = {
-    'proposed': '#e41a1c',       # red
-    'sidetone_only': '#377eb8',   # blue
-    'matrix_pencil': '#4daf4a',   # green
-    'he2023': '#984ea3',          # purple
-    'ideal': '#777777',           # gray
-    'no_comp': '#ff7f00',         # orange
+    'proposed': '#e41a1c',
+    'sidetone_only': '#377eb8',
+    'matrix_pencil': '#4daf4a',
+    'he2023': '#984ea3',
+    'ideal': '#777777',
+    'no_comp': '#ff7f00',
 }
 MARKERS = {
     'proposed': 'o',
@@ -92,11 +93,11 @@ def _load_json(name):
 
 
 # ============================================================
-# figure2: Experiment 2 MSE-SNRCurves
+# figure2: Experiment 2 MSE-SNRCurves (pure + engineering_zp)
 # ============================================================
 
 def plot_exp2_mse_snr():
-    """Experiment 2: MSE-SNRCurves (pure + engineering two subplots)"""
+    """Experiment 2(v2): MSE-SNRCurves (pure + engineering_zp two subplots)"""
     d = _load_json("exp2_mse_snr")
     cfg = d['config']
     snr_list = cfg['snr_list']
@@ -104,7 +105,12 @@ def plot_exp2_mse_snr():
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
 
-    for ax_idx, frame_type in enumerate(['pure', 'engineering']):
+    frame_labels = {
+        'pure': ('Pure Pulse Frame', 'Pure Frame'),
+        'engineering_zp': (r'Engineering Frame (Zero-Padded, $A=3.0$)', 'Engineering Frame'),
+    }
+
+    for ax_idx, frame_type in enumerate(['pure', 'engineering_zp']):
         ax = axes[ax_idx]
         frame_data = d['results'][frame_type]
 
@@ -120,7 +126,7 @@ def plot_exp2_mse_snr():
 
         ax.set_xlabel('SNR (dB)')
         ax.set_ylabel('MSE')
-        ax.set_title(f'{"Pure Frame" if frame_type=="pure" else "Engineering Frame"} (Kmax={cfg["Kmax"]}, A={cfg["A"]})')
+        ax.set_title(frame_labels[frame_type][0])
         ax.legend(loc='lower left')
         ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
         ax.yaxis.set_major_locator(LogLocator(numticks=6))
@@ -133,7 +139,7 @@ def plot_exp2_mse_snr():
 
 
 # ============================================================
-# figure3: Experiment 3 Full-rangenu_f MSESweep
+# figure3: Experiment 3 Full-rangenu_f MSESweep (unchanged)
 # ============================================================
 
 def plot_exp3_nu_sweep():
@@ -183,79 +189,38 @@ def plot_exp3_nu_sweep():
 
 
 # ============================================================
-# figure4: Experiment 4 Kmax×Aheatmap
+# figure4: Experiment 4 pilot powerAsensitivity (MSE vs A line plot)
 # ============================================================
 
-def plot_exp4_heatmap():
-    """Experiment 4: Kmax×Aheatmap (3subplot)"""
-    d = _load_json("exp4_kmax_a_heatmap")
-    meta = d['meta']
-    kmax_list = meta['kmax_list']
+def plot_exp4_a_sensitivity():
+    """Experiment 4(v2): pilot powerAsensitivity (MSE vs A, 3estimator)"""
+    d = _load_json("exp4_a_sensitivity")
+    meta = d['config']
     a_list = meta['a_list']
     est_names = ['proposed', 'matrix_pencil', 'he2023']
 
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(7, 5))
 
-    # find globalvmin/vmax（logarithmic scale）
-    all_mses = []
     for est in est_names:
-        for kmax in kmax_list:
-            for a in a_list:
-                val = d['heatmap'][est][str(kmax)][f"{a:.1f}"]['mse']
-                all_mses.append(val)
-    all_mses = np.array(all_mses)
-    vmin = max(all_mses.min(), 1e-7)
-    vmax = all_mses.max()
+        mses = []
+        for a in a_list:
+            mses.append(d['results_by_a'][f"{a:.1f}"][est]['mse'])
 
-    for ax_idx, est in enumerate(est_names):
-        ax = axes[ax_idx]
-        data = np.zeros((len(kmax_list), len(a_list)))
-        for i, kmax in enumerate(kmax_list):
-            for j, a in enumerate(a_list):
-                data[i, j] = d['heatmap'][est][str(kmax)][f"{a:.1f}"]['mse']
+        ax.semilogy(a_list, mses,
+                    color=COLORS[est], marker=MARKERS[est],
+                    label=LABELS[est], markersize=7, linewidth=1.8)
 
-        im = ax.imshow(data, aspect='auto', cmap='RdYlGn_r',
-                       norm=matplotlib.colors.LogNorm(vmin=vmin, vmax=vmax),
-                       origin='lower')
+    ax.set_xlabel('Pilot Amplitude $A$')
+    ax.set_ylabel('MSE')
+    ax.set_title(rf'Pilot Power Sensitivity (SNR={meta["snr_db"]}dB, $\nu_f$={meta["nu_f"]}, MC={meta["mc_times"]})')
+    ax.legend(loc='upper right')
+    ax.set_xticks(a_list)
+    ax.xaxis.set_major_formatter(plt.FormatStrFormatter('%.1f'))
+    ax.yaxis.set_major_locator(LogLocator(numticks=6))
+    ax.yaxis.set_major_formatter(LogFormatterMathtext())
 
-        ax.set_xticks(range(len(a_list)))
-        ax.set_xticklabels([f'{a}' for a in a_list])
-        ax.set_yticks(range(len(kmax_list)))
-        ax.set_yticklabels([f'{kmax}' for kmax in kmax_list])
-        ax.set_xlabel('Pilot Amplitude A')
-        ax.set_ylabel('Guard-Zone Length $K_{max}$')
-        ax.set_title(LABELS[est])
-
-        # annotate values
-        for i in range(len(kmax_list)):
-            for j in range(len(a_list)):
-                val = data[i, j]
-                color = 'white' if val > vmax * 0.1 else 'black'
-                ax.text(j, i, f'{val:.1e}', ha='center', va='center',
-                        fontsize=8, color=color)
-
-        # mark guard zero zero constraintline Kmax_min = 1/(rho*A)
-        rho = 0.1
-        for j, a in enumerate(a_list):
-            kmin = 1.0 / (rho * a)
-            # findkmin falls atwhichtwokmaxofbetween
-            for i, kmax in enumerate(kmax_list):
-                if kmax < kmin:
-                    # at thatgrid pointupperequationdraw horizontal pathmark guard zero zero insufficient
-                    ax.add_patch(plt.Rectangle((j-0.5, i-0.5), 1, 1,
-                                               fill=False, edgecolor='blue',
-                                               linewidth=1.5, linestyle='--'))
-
-    # shared colorbar (placeatbelow the figure，tight layout)
-    cbar = fig.colorbar(im, ax=axes.ravel().tolist(),
-                        orientation='horizontal',
-                        fraction=0.035, pad=0.04, aspect=35,
-                        label='MSE')
-
-    fig.suptitle(rf'Engineering Sensitivity (SNR={meta["snr_db"]}dB, $\nu_f$={meta["nu_f"]}, MC={meta["mc_times"]})'
-                 + '\n(blue dashed: guard zone insufficient)',
-                 fontsize=12, y=1.01)
-    _save_fig(fig, 'fig4_kmax_a_heatmap')
+    fig.tight_layout()
+    _save_fig(fig, 'fig4_a_sensitivity')
 
 
 # ============================================================
@@ -263,7 +228,7 @@ def plot_exp4_heatmap():
 # ============================================================
 
 def plot_exp5_ber_snr():
-    """Experiment 5: BER-SNRCurves (5Curves)"""
+    """Experiment 5(v2): BER-SNRCurves (5Curves)"""
     d = _load_json("exp5_ber_snr")
     meta = d['meta']
     snr_list = meta['snr_list']
@@ -282,7 +247,6 @@ def plot_exp5_ber_snr():
             else:
                 bers.append(0.0)
 
-        # 0valueirrationalmethodin logfiguredisplayed, usetiny valuealternatives
         bers_plot = [max(b, 1e-7) for b in bers]
 
         if name == 'ideal':
@@ -300,7 +264,7 @@ def plot_exp5_ber_snr():
 
     ax.set_xlabel('SNR (dB)')
     ax.set_ylabel('BER')
-    ax.set_title(rf'Link BER Performance ($\nu_f=0.3$, Engineering Frame, MC={meta["mc_times"]})')
+    ax.set_title(rf'Link BER Performance ($\nu_f=0.3$, Zero-Padded Frame, MC={meta["mc_times"]})')
     ax.legend(loc='upper right')
     ax.set_ylim(1e-5, 1)
     ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
@@ -311,27 +275,75 @@ def plot_exp5_ber_snr():
 
 
 # ============================================================
+# figure6: Experiment 6 complexitycomparison (bar chart)
+# ============================================================
+
+def plot_exp6_complexity():
+    """Experiment 6(v2): complexitycomparisonbar chart"""
+    d = _load_json("exp6_complexity")
+    timing = d['timing']
+
+    names = ['proposed', 'sidetone_only', 'matrix_pencil', 'he2023']
+    means = [timing[n]['mean_us'] for n in names]
+    stds = [timing[n]['std_us'] for n in names]
+    labels = [LABELS[n] for n in names]
+    colors = [COLORS[n] for n in names]
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    bars = ax.bar(range(len(names)), means, yerr=stds,
+                  color=colors, edgecolor='black', linewidth=0.5,
+                  capsize=4, width=0.6)
+
+    ax.set_xticks(range(len(names)))
+    ax.set_xticklabels(labels, fontsize=10)
+    ax.set_ylabel('Average Time ($\mu$s)')
+    ax.set_title(r'Computational Complexity (Zero-Padded Frame, SNR=10dB)')
+    ax.set_yscale('log')
+
+    # annotate valuesand ratio
+    prop_mean = means[0]
+    for i, (bar, mean_val) in enumerate(zip(bars, means)):
+        ratio = mean_val / prop_mean
+        if i == 0:
+            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() * 1.3,
+                    f'{mean_val:.1f}$\mu$s',
+                    ha='center', va='bottom', fontsize=9, fontweight='bold')
+        else:
+            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() * 1.3,
+                    f'{mean_val:.1f}$\mu$s\n({ratio:.1f}x)',
+                    ha='center', va='bottom', fontsize=9)
+
+    ax.set_ylim(bottom=1e1)  # minimum10us
+    fig.tight_layout()
+    _save_fig(fig, 'fig6_complexity')
+
+
+# ============================================================
 # main function
 # ============================================================
 
 def plot_all():
     """generateallfigure table"""
     print("=" * 60)
-    print("  Generate all experiment figures")
+    print("  Generate all experiment figures [v2 - Zero-Padded Frame]")
     print(f"  output directory: {FIGURES_DIR}")
     print("=" * 60)
 
-    print("\n[1/4] figure2: MSE-SNRCurves...")
+    print("\n[1/5] figure2: MSE-SNRCurves...")
     plot_exp2_mse_snr()
 
-    print("\n[2/4] figure3: Full-rangenu_fSweep...")
+    print("\n[2/5] figure3: Full-rangenu_fSweep...")
     plot_exp3_nu_sweep()
 
-    print("\n[3/4] figure4: Kmax×Aheatmap...")
-    plot_exp4_heatmap()
+    print("\n[3/5] figure4: pilotpowerAsensitivity...")
+    plot_exp4_a_sensitivity()
 
-    print("\n[4/4] figure5: BER-SNRCurves...")
+    print("\n[4/5] figure5: BER-SNRCurves...")
     plot_exp5_ber_snr()
+
+    print("\n[5/5] figure6: complexitycomparison...")
+    plot_exp6_complexity()
 
     print("\n" + "=" * 60)
     print("  allfigure generationdone!")
